@@ -1,0 +1,28 @@
+Explanation and Practical Application:
+
+User Input:
+
+The program prompts the user to enter the current temperature in Celsius.
+Console.ReadLine() reads the user's input as a string.
+double.TryParse() attempts to convert the string input to a double-precision floating-point number. This is crucial for handling potential errors if the user enters non-numeric input.
+Input Validation:
+
+The if (double.TryParse(...)) block checks if the conversion was successful. If TryParse returns true, it means the input was a valid number, and the program proceeds. Otherwise, it displays an error message.
+Conditional Checks (if statements):
+
+The program uses if statements to check different temperature ranges:
+if (temperature > 30): Checks if the temperature is above 30 degrees Celsius (hot).
+if (temperature < 10): Checks if the temperature is below 10 degrees celsius (cold).
+if(temperature >= 10 && temperature <= 30): Checks if the temperature is between 10 and 30 degrees Celsius (moderate).
+if(temperature < 0): Checks if the temperature is freezing.
+else if(temperature >= 0 && temperature < 10): Checks if the temperature is chilly.
+else: catches all other temperatures.
+Output:
+
+Based on the temperature, the program displays appropriate messages to the console.
+How to Run the Code:
+
+Save: Save the code as a .cs file (e.g., TemperatureChecker.cs).
+Compile: Open a command prompt or terminal, navigate to the directory where you saved the file, and compile it using the C# compiler: csc TemperatureChecker.cs
+Run: Execute the compiled program: TemperatureChecker.exe (or just TemperatureChecker on some systems).
+This example demonstrates how if statements can be used to control program flow based on user input and perform different actions based on different conditions. It also shows how to perform input validation, which is a very important part of writing robust applications.
