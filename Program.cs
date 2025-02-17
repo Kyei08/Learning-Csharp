@@ -1,87 +1,99 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class ArrayExample
+public class ListExample
 {
     public static void Main(string[] args)
     {
-        // 1. Array Declaration and Initialization
-        // Declare an integer array named 'numbers' with a size of 5.
-        int[] numbers = new int[5];
+        // Creating a List of strings
+        List<string> names = new List<string>();
 
-        // Initialize the array elements.
-        numbers[0] = 10;
-        numbers[1] = 20;
-        numbers[2] = 30;
-        numbers[3] = 40;
-        numbers[4] = 50;
+        // Adding elements to the List
+        names.Add("Alice");
+        names.Add("Bob");
+        names.Add("Charlie");
+        names.Add("David");
 
-        // Alternative initialization (array initializer)
-        string[] names = { "Alice", "Bob", "Charlie", "David" };
+        // Inserting an element at a specific index
+        names.Insert(1, "Eve"); // Inserts "Eve" at index 1
 
-        // 2. Accessing Array Elements
-        Console.WriteLine("First number: " + numbers[0]); // Output: 10
-        Console.WriteLine("Third name: " + names[2]);    // Output: Charlie
+        // Accessing elements by index
+        Console.WriteLine("Element at index 0: " + names[0]); // Output: Alice
+        Console.WriteLine("Element at index 2: " + names[2]); // Output: Charlie
 
-        // 3. Array Length
-        Console.WriteLine("Number of elements in 'numbers': " + numbers.Length); // Output: 5
-        Console.WriteLine("Number of elements in 'names': " + names.Length); // Output: 4
-
-        // 4. Looping through an Array (using 'for' loop)
-        Console.WriteLine("\nNumbers:");
-        for (int i = 0; i < numbers.Length; i++)
-        {
-            Console.WriteLine(numbers[i]);
-        }
-
-        Console.WriteLine("\nNames:");
-        for (int i = 0; i < names.Length; i++)
+        // Iterating through the List using a for loop
+        Console.WriteLine("\nUsing for loop:");
+        for (int i = 0; i < names.Count; i++)
         {
             Console.WriteLine(names[i]);
         }
 
-        // 5. Looping through an Array (using 'foreach' loop)
-        Console.WriteLine("\nNumbers (using foreach):");
-        foreach (int number in numbers)
-        {
-            Console.WriteLine(number);
-        }
-
-        Console.WriteLine("\nNames (using foreach):");
+        // Iterating through the List using a foreach loop
+        Console.WriteLine("\nUsing foreach loop:");
         foreach (string name in names)
         {
             Console.WriteLine(name);
         }
 
-        // 6. Multidimensional Arrays (2D example)
-        int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        // Checking if an element exists
+        bool containsBob = names.Contains("Bob");
+        Console.WriteLine("\nList contains Bob: " + containsBob); // Output: True
 
-        Console.WriteLine("\nMatrix:");
-        for (int row = 0; row < matrix.GetLength(0); row++)
+        // Finding the index of an element
+        int indexOfCharlie = names.IndexOf("Charlie");
+        Console.WriteLine("Index of Charlie: " + indexOfCharlie); // Output: 3
+
+        // Removing an element
+        names.Remove("Eve");
+
+        // Removing an element at a specific index
+        names.RemoveAt(0);
+
+        Console.WriteLine("\nList after removals:");
+        foreach (string name in names)
         {
-            for (int col = 0; col < matrix.GetLength(1); col++)
-            {
-                Console.Write(matrix[row, col] + " ");
-            }
-            Console.WriteLine();
+            Console.WriteLine(name);
         }
 
-        // 7. Array methods.
-        int[] unsortedNumbers = { 5, 2, 8, 1, 9 };
-        Array.Sort(unsortedNumbers); // Sorts the array.
-        Console.WriteLine("\nSorted Numbers:");
-        foreach (int num in unsortedNumbers)
+        // Getting the number of elements in the List
+        int count = names.Count;
+        Console.WriteLine("\nNumber of elements: " + count); // Output: 3
+
+        // Clearing the List
+        names.Clear();
+
+        // Checking if the List is empty
+        bool isEmpty = (names.Count == 0);
+        Console.WriteLine("List is empty: " + isEmpty); // Output: True
+
+        // Example with a list of integers:
+        List<int> numbers = new List<int>();
+        numbers.Add(1);
+        numbers.Add(2);
+        numbers.Add(3);
+
+        int sum = 0;
+        foreach(int number in numbers)
         {
-            Console.Write(num + " ");
+            sum += number;
         }
 
-        int index = Array.IndexOf(unsortedNumbers, 8); //Finds the index of an element.
-        Console.WriteLine($"\nThe index of 8 is: {index}");
+        Console.WriteLine($"\nSum of numbers: {sum}"); // Output: Sum of numbers: 6
 
-        Array.Reverse(unsortedNumbers); //reverses the array.
-        Console.WriteLine("\nReversed Sorted Numbers:");
-        foreach (int num in unsortedNumbers)
+        //Example with a list of custom objects:
+        List<Person> people = new List<Person>();
+        people.Add(new Person { Name = "John", Age = 30 });
+        people.Add(new Person { Name = "Jane", Age = 25 });
+
+        foreach(Person person in people)
         {
-            Console.Write(num + " ");
+            Console.WriteLine($"\nPerson: Name={person.Name}, Age={person.Age}");
         }
+    }
+
+    public class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
 }
