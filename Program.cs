@@ -1,99 +1,78 @@
 ﻿using System;
-using System.Collections.Generic;
 
-public class ListExample
+public class FunctionExamples
 {
-    public static void Main(string[] args)
+    // A simple function that takes no arguments and returns no value (void).
+    public static void Greet()
     {
-        // Creating a List of strings
-        List<string> names = new List<string>();
+        Console.WriteLine("Hello, World!");
+    }
 
-        // Adding elements to the List
-        names.Add("Alice");
-        names.Add("Bob");
-        names.Add("Charlie");
-        names.Add("David");
+    // A function that takes one argument and returns no value.
+    public static void GreetPerson(string name)
+    {
+        Console.WriteLine($"Hello, {name}!");
+    }
 
-        // Inserting an element at a specific index
-        names.Insert(1, "Eve"); // Inserts "Eve" at index 1
+    // A function that takes two arguments and returns a value (an integer).
+    public static int Add(int a, int b)
+    {
+        return a + b;
+    }
 
-        // Accessing elements by index
-        Console.WriteLine("Element at index 0: " + names[0]); // Output: Alice
-        Console.WriteLine("Element at index 2: " + names[2]); // Output: Charlie
-
-        // Iterating through the List using a for loop
-        Console.WriteLine("\nUsing for loop:");
-        for (int i = 0; i < names.Count; i++)
+    // A function with optional parameters.
+    public static string FormatName(string firstName, string lastName, string middleName = "")
+    {
+        if (string.IsNullOrEmpty(middleName))
         {
-            Console.WriteLine(names[i]);
+            return $"{firstName} {lastName}";
         }
-
-        // Iterating through the List using a foreach loop
-        Console.WriteLine("\nUsing foreach loop:");
-        foreach (string name in names)
+        else
         {
-            Console.WriteLine(name);
-        }
-
-        // Checking if an element exists
-        bool containsBob = names.Contains("Bob");
-        Console.WriteLine("\nList contains Bob: " + containsBob); // Output: True
-
-        // Finding the index of an element
-        int indexOfCharlie = names.IndexOf("Charlie");
-        Console.WriteLine("Index of Charlie: " + indexOfCharlie); // Output: 3
-
-        // Removing an element
-        names.Remove("Eve");
-
-        // Removing an element at a specific index
-        names.RemoveAt(0);
-
-        Console.WriteLine("\nList after removals:");
-        foreach (string name in names)
-        {
-            Console.WriteLine(name);
-        }
-
-        // Getting the number of elements in the List
-        int count = names.Count;
-        Console.WriteLine("\nNumber of elements: " + count); // Output: 3
-
-        // Clearing the List
-        names.Clear();
-
-        // Checking if the List is empty
-        bool isEmpty = (names.Count == 0);
-        Console.WriteLine("List is empty: " + isEmpty); // Output: True
-
-        // Example with a list of integers:
-        List<int> numbers = new List<int>();
-        numbers.Add(1);
-        numbers.Add(2);
-        numbers.Add(3);
-
-        int sum = 0;
-        foreach(int number in numbers)
-        {
-            sum += number;
-        }
-
-        Console.WriteLine($"\nSum of numbers: {sum}"); // Output: Sum of numbers: 6
-
-        //Example with a list of custom objects:
-        List<Person> people = new List<Person>();
-        people.Add(new Person { Name = "John", Age = 30 });
-        people.Add(new Person { Name = "Jane", Age = 25 });
-
-        foreach(Person person in people)
-        {
-            Console.WriteLine($"\nPerson: Name={person.Name}, Age={person.Age}");
+            return $"{firstName} {middleName} {lastName}";
         }
     }
 
-    public class Person
+    // A function with named parameters.
+    public static void PrintPersonDetails(string name, int age, string city)
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
+        Console.WriteLine($"Name: {name}, Age: {age}, City: {city}");
+    }
+
+    //A function that returns multiple values using tuples.
+    public static (int sum, int product) Calculate(int a, int b)
+    {
+        return (a + b, a * b);
+    }
+
+    public static void Main(string[] args)
+    {
+        // Calling the Greet function.
+        Greet();
+
+        // Calling the GreetPerson function.
+        GreetPerson("Alice");
+
+        // Calling the Add function and storing the result.
+        int sum = Add(5, 3);
+        Console.WriteLine($"5 + 3 = {sum}");
+
+        //Using optional parameters
+        string fullName1 = FormatName("John", "Doe");
+        string fullName2 = FormatName("Jane", "Smith", "Middle");
+        Console.WriteLine(fullName1);
+        Console.WriteLine(fullName2);
+
+        //Using named parameters
+        PrintPersonDetails(name: "Bob", age: 30, city: "New York");
+
+        //Using tuples to return multiple values.
+        (int sumResult, int productResult) = Calculate(4,6);
+        Console.WriteLine($"Sum: {sumResult}, Product: {productResult}");
+
+        //You can also deconstruct tuples inline.
+        var (sumInline, productInline) = Calculate(2,3);
+        Console.WriteLine($"Inline Sum: {sumInline}, Inline Product: {productInline}");
+
     }
 }
